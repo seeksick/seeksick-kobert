@@ -1,0 +1,36 @@
+# Model Configuration
+model:
+  name: "monologg/kobert"
+  num_labels: 5
+  max_length: 128
+  dropout: 0.1
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 10
+  learning_rate: 2e-5
+  weight_decay: 0.01
+  warmup_steps: 500
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+  seed: 42
+
+# Data Configuration
+data:
+  train_path: "data/processed/train.csv"
+  val_path: "data/processed/val.csv"
+  test_path: "data/processed/test.csv"
+  label_columns: ["happy", "depressed", "surprised", "angry", "neutral"]
+  text_column: "text"
+  label_column: "label"
+  neutral_undersample_ratio: 0.2
+
+# Logging Configuration
+logging:
+  log_dir: "logs"
+  wandb_project: "seeksick-kobert"
+  wandb_entity: "your-username"
+  save_dir: "checkpoints"
+  eval_steps: 100
+  save_steps: 500 
